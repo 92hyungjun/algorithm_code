@@ -1,16 +1,19 @@
-# https://www.acmicpc.net/problem/15652
+#import copy
+#print("enter N, M")
 N, M = map(int, input().split())
-#N = 4
-#M = 2
-out = []
+#N = 3
+#M = 3
 
-def solve(depth, idx):
-    if depth == M:
-        print(' '.join(map(str, out)))
+def print_cnt( start, parents ):
+    if( len(parents) == M ):
+        print(' '.join(map(str, parents)))
         return
-    for i in range(idx, N):
-        out.append(i+1)
-        solve(depth+1, i)
-        out.pop()
 
-solve(0, 0)
+    for i in range(start, N):
+        print_val = i + 1
+        parents.append(print_val)
+        print_cnt( i, parents )
+        parents.pop()
+
+print_cnt(0, [] )
+
